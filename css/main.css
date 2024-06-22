@@ -1,0 +1,133 @@
+body {
+    display: flex;
+flex-direction: column;
+gap: 90px;
+background: var(--GreyShades-900, #1A1A1A);
+}
+
+.header__container {
+    background-color: #000;
+    display: flex;
+padding: 20px 2px;
+justify-content: center;
+align-items: center;
+gap: 36px; 
+align-self: stretch;
+}
+
+#heading {
+    color: var(--Warning-200, #EFDD33);
+
+/* Headings/Heading02 */
+font-family: "Inria Serif";
+font-size: 48px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+
+ 
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 1200px; 
+    width: 100%; 
+    gap: 20px;
+    padding: 20px;
+
+}
+
+.container-img{
+display: flex;
+justify-content: center;    
+align-items: center;
+}
+
+.movie-img {
+    width: min(440px, 35rem);
+    height: min(440px, 35rem);
+    border: 0px solid var(--Black-20, #000);
+background: url(<path-to-image>) lightgray 50% / contain no-repeat;
+box-shadow: 3px 5px 5.4px 3px rgba(0, 0, 0, 0.25);
+}
+
+.button-fav {
+    display: flex;
+    justify-content: end;
+}
+#fav__button {
+    display: flex;
+    padding: 8px;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 8px;
+    border-radius: 40px;
+
+    border-radius: 40px;
+border: 2px solid var(--Error-100, #FD1E00);
+background: var(--Warning-200, #efdd33);
+}
+
+
+.form-1 {
+    display: flex;
+    flex-direction: column;
+    max-width: 600px; 
+    width: 100%;
+    gap: 20px;
+}
+.input-form{
+    display: flex;
+    
+    padding: 20px;
+    background-color: var(--GreyShades-900, #211d1d);
+    border: 1px solid var(--Black-20, #000);
+    border-radius: 10px;
+
+   
+    box-shadow: 3px 5px 5.4px 3px rgba(0, 0, 0, 0.25);
+}
+
+
+#search__input {
+    width: 100%;
+    padding: 8px;
+    border-top-left-radius: 32px;
+    border-bottom-left-radius: 32px;
+    border: 1px solid var(--Black-20, #000);
+    /* border-radius: 32px; */
+    background: var(--Warning-600, #F7EE99);
+}
+
+#search__button {
+    border-top-right-radius: 32px;
+    border-bottom-right-radius: 32px;
+    background: var(--Warning-200, #F7EE99);
+}
+
+#sort {
+display: flex;
+padding: 8px;
+justify-content: center;
+align-items: center;
+gap: 8px;
+
+border-radius: 1px;
+background: var(--Warning-700, #F9F2B2);
+}
+
+@media only screen and (min-width: 45rem) {
+
+    
+    .header__container {
+        padding: 30px;
+    }
+
+    #heading {
+      font-size: 48px;
+    }
+
+
+}
+

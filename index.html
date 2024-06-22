@@ -5,10 +5,48 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>PWA Project</title>
 </head>
-<body>
-    <h1>Vinaydeep Singh Padda</h1>
-    <p>padd0017@algonquinlive.com</p>
-    <p id="date"></p>
+<link rel="stylesheet" href="./css/reset.css">
+<link rel="stylesheet" href="./css/main.css">
+
+
+<body class="index.html">
+    <header>
+        <div class="header__container">
+        <h1 id="heading">Movie Night</h1>
+        </div>
+    </header>
+
+    <div class="container">
+
+        <div class="container-img">
+            <img src="./img/images/Frame 3.png" alt="movie image" class="movie-img">
+        </div>
+
+        <div class="button-fav">
+            <button id="fav__button">
+                <img src="./img/icons/heartbold.svg" alt="heartbold">
+                Your Favourites
+            </button>
+        </div>
+
+        <form class="form-1">
+            <div class="input-form">
+                <input type="text" id="search__input" placeholder="Search for a movie" name="keyword">
+                
+                <button id="search__button"><img src="./img/icons/search.svg" alt="Search Button" type="submit"></button>
+            </div>
+        
+
+        <div class="drop-down">
+            <select name="sort" id="sort">
+                <option value=""></option>
+                <option value="popularity">By Popularity</option>
+                <option value="release-date">By Release Date</option>
+                <option value="voting">By Votes</option>
+            </select>
+        </div>
+        </form>
+    </div>
     <script src="./js/main.js"></script>
 </body>
 </html>
