@@ -4,7 +4,7 @@ function registerSw(){
       navigator.serviceWorker.register('./sw.js');
   }
 
-  navigator.serviceWorker.addEventListener("message", receiveMessage)
+  // navigator.serviceWorker.addEventListener("message", receiveMessage)
 }
 
 
@@ -23,10 +23,13 @@ if(document.body.classList.contains("index.html")){
 }else if(document.body.classList.contains("details.html")){
   console.log("details.html page")
   getOneId()
+
 }else if(document.body.classList.contains("cached.html")){
   console.log("cached.html page")
+  retrieveFromCache()
 }else if(document.body.classList.contains("favourite.html")){
   console.log("favourite.html page")
+  retrieveFromFavourite()
 }
 }
 
@@ -35,7 +38,12 @@ function grabInputHome(){
 const form = document.querySelector("form");
 const input = document.getElementById("search__input");
 const sort = document.getElementById("sort");
+const favBtn = document.getElementById("fav__button");
 
+favBtn.addEventListener("click", (ev)=>{
+  ev.preventDefault();
+  location.href = `./favourite-screen.html`
+})
 
 form.addEventListener("submit", (ev)=>{
   ev.preventDefault();
@@ -50,14 +58,11 @@ form.addEventListener("submit", (ev)=>{
 //RESULTS PAGE CODE
 
 function fetchDataResults(){
- 
   let query = []
-
-console.log(location.href)
 const url = new URL(location.href)
 
-for(let x of url.searchParams.values()){
-query.push(x)
+for(let querys of url.searchParams.values()){
+query.push(querys)
 }
 
 let keyword = query[0]
@@ -71,8 +76,7 @@ fetch(BaseUrl).then((res)=>{
     throw new Error("Something is wrong")
   }
   return res.json();
-}).then(({data})=> {appendData(data) 
-  console.log(data)})
+}).then(({data})=> appendData(data))
 }
 
 
@@ -103,32 +107,24 @@ function grabMovieCard(ev){
 ev.preventDefault()
 let cardClicked;
 if(ev.target.closest(".movieCards")){
-   console.log("clicked on card")
    cardClicked = ev.target.closest(".movieCards").getAttribute("data-ref")
-  //  console.log(cardClicked)
 }
 if(cardClicked){
-
   postIdMessage(cardClicked)
-  console.log(cardClicked)
   location.href = `./details.html?id=${cardClicked}`
-  
 }
 }
 
 //DETAILS PAGE
-
 function getOneId(){
 
   let url = new URL(location.href)
-  console.log(url)
 let params = [];
   for(let a of url.searchParams.values()){
 params.push(a)
   }
-
-  console.log(params)
   fetchGetOne(params)
+  
 }
 
 function fetchGetOne(cardId){
@@ -136,7 +132,10 @@ function fetchGetOne(cardId){
   fetch(getOneUrl).then((res)=>{
     if(!res.ok) throw new Error("Something went wrong in getOne")
       return res.json()
-  }) .then((data)=> console.log(data))
+  }) .then((data)=> {
+    appendDetails(data)
+    saveToFav(data)
+  })
 }
 
 function postIdMessage(cardId){
@@ -180,11 +179,75 @@ df.append(div)
 output.append(df)
 }
 
-function receiveMessage(ev){
-  console.log(ev.data.details)
-  if(type = "details"){
-    appendDetails(ev.data.details)
-  }
+async function saveToFav({data}){
+  // console.log(movieData)
+  document.getElementById("saveToFav").addEventListener("click", async()=>{
+    const cache =await caches.open("favourites-pwa")
+      console.log(cache)
+
+      const response = new Response(JSON.stringify(data), {
+        status: 200,
+        statusText: "OK",
+        headers: {
+          "Content-Type": "application/json",
+
+        }
+      })
+      await cache.put(data.id, response.clone())
+      const resJson = await response.json()
+      console.log(resJson);
+  })
+}
+
+//  FAVOURITE'S PAGE
+
+async function retrieveFromFavourite(){
+  const cache = await caches.open("favourites-pwa")
+  const cacheKey = await cache.keys()
+ let myData = await  Promise.all(cacheKey.map(async (req)=>{
+    const retrieve = await cache.match(req);
+    const retrieveJSON = await retrieve.json()
+    return retrieveJSON
+  }))
+  appendMovieCards(myData)
+}
+
+function appendMovieCards(cardData){
+  console.log(cardData);
+  const output = document.querySelector('.output-cards')
+  let df = new DocumentFragment
+  cardData.forEach(item => {
+    let card = document.createElement("div");
+    card.setAttribute("data-ref", item.id)
+    card.className = "movieCards"
+    let img = document.createElement("img")
+    img.src = item.imageUrl
+    img.width = 150
+  
+  
+    let h3 = document.createElement("h3");
+    h3.textContent = item.title
+
+    card.append(img)
+    card.append(h3)
+    df.append(card)
+  });
+output.append(df)
+
+output.addEventListener("click", grabMovieCard)
+}
+
+//CACHE PAGE
+ 
+async function retrieveFromCache(){
+  const cache = await caches.open("movie-pwa-project-1")
+  const cacheKey = await cache.keys()
+ let cacheData = await  Promise.all(cacheKey.map(async (req)=>{
+    const retrieve = await cache.match(req);
+    const {data} = await retrieve.json()
+    return data
+  }))
+  appendMovieCards(cacheData)
 }
 
 document.addEventListener("DOMContentLoaded", init=>{
