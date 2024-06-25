@@ -13,14 +13,14 @@ if(document.body.classList.contains("index.html")){
   grabInputHome()
   console.log("index.html page")
 
-} else if(document.body.classList.contains("results.html")){
+} else if(document.body.classList.contains("results-html")){
   console.log("results.html page")
   fetchDataResults()
 
 }else if(document.body.classList.contains("results.html")){
   console.log("results.html page")
 
-}else if(document.body.classList.contains("details.html")){
+}else if(document.body.classList.contains("details-html")){
   console.log("details.html page")
   getOneId()
 
@@ -87,15 +87,23 @@ function appendData(data){
     let card = document.createElement("div");
     card.setAttribute("data-ref", item.id)
     card.className = "movieCards"
+    let span1 = document.createElement("span")
+    let span2 = document.createElement("span")
+    let span3 = document.createElement("span")
+    let span4 = document.createElement("span")
     let img = document.createElement("img")
     img.src = item.imageUrl
   
   
-    let h3 = document.createElement("h3");
-    h3.textContent = item.title
+    let h4 = document.createElement("h4");
+    h4.textContent = item.title
 
+    card.append(span1)
+    card.append(span2)
+    card.append(span3)
+    card.append(span4)
     card.append(img)
-    card.append(h3)
+    card.append(h4)
     df.append(card)
   });
 output.append(df)
@@ -159,20 +167,22 @@ function appendDetails(details){
  let img = document.createElement("img");
  img.src= details.imageUrl;
 
- let p1 = document.createElement("p")
- p1.textContent = details.vote_average
+ let p1 = document.createElement("div")
+ p1.className = "ratings"
+ p1.textContent = `${details.vote_average} /10*`
  console.log(p1)
 
  let h2 = document.createElement("h2");
  h2.textContent = details.title;
 
  let p = document.createElement("p")
+ p.className = "details"
  p.textContent = details.overview;
 
 
-div.append(img)
-div.append(p1)
+output.append(img)
 div.append(h2)
+div.append(p1)
 div.append(p)
 
 df.append(div)

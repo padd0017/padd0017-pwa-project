@@ -5,6 +5,8 @@ gap: 90px;
 background: var(--GreyShades-900, #1A1A1A);
 }
 
+
+
 .header__container {
     background-color: #000;
     display: flex;
@@ -31,7 +33,6 @@ line-height: normal;
     display: flex;
     flex-direction: column;
     align-items: center;
-    max-width: 1200px; 
     width: 100%; 
     gap: 20px;
     padding: 20px;
@@ -106,6 +107,11 @@ background: var(--Warning-200, #efdd33);
     background: var(--Warning-200, #F7EE99);
 }
 
+.drop-down {
+    display: flex;
+    justify-content: end;
+}
+
 #sort {
 display: flex;
 padding: 8px;
@@ -130,4 +136,349 @@ background: var(--Warning-700, #F9F2B2);
 
 
 }
+
+/* SEARCH-RESULTS.HTML */
+
+.results-html {
+    gap: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    header{
+        width: 100%;
+    }
+}
+
+
+.main {
+    max-width: 1400px;
+
+}
+
+
+.main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 20px;
+}
+
+.neon-button {
+    color: #ffff00;
+    text-decoration: none;
+    text-transform: uppercase;
+    letter-spacing: 4px;
+    padding: 15px 30px;
+    font-size: 14px;
+    overflow: hidden;
+    position: relative;
+    display: inline-block;
+    border-radius: 10px;
+    
+}
+
+.neon-button:hover {
+    color: #255784;
+    background: #ffff00;
+    box-shadow: 0 0 10px #ffff00, 0 0 40px #ffff00, 0 0 80px #ffff00;
+    transition-delay: 1.2s;
+}
+
+.neon-button span{
+    position: absolute;
+    display: block;
+}
+
+.neon-button span:nth-child(1) {
+        top: 0;
+        left: -100%;
+        width: 100%;
+        height: 4px;
+        background: linear-gradient(90deg, transparent, #ffff00);
+}
+
+.neon-button:hover :nth-child(1){
+    left: 100%;
+    transition:  1s;
+}
+
+.neon-button span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 4px;
+    background: linear-gradient(270deg, transparent, #ffff00);
+}
+
+.neon-button:hover :nth-child(3){
+right: 100%;
+transition:  1s;
+transition-delay: 0.5s;
+}
+
+
+.neon-button span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #ffff00);
+}
+
+.neon-button:hover :nth-child(2){
+top: 100%;
+transition:  1s;
+transition-delay: 0.25s;
+}
+
+.neon-button span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #ffff00);
+}
+
+.neon-button:hover :nth-child(4){
+bottom: 100%;
+transition:  1s;
+transition-delay: 0.75s;
+}
+
+.results-heading {
+    color: #ffff00;
+    font-size: 24px;
+    text-transform: uppercase;
+
+}
+
+/* CARDS */
+
+.output {
+display: grid;
+grid-template-columns: repeat(1, 1fr); 
+justify-items: center;
+align-items: center;
+gap: 20px;
+padding: 0 1.2rem;
+
+}
+
+.movieCards {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: fit-content;
+    flex-direction: column;
+    padding: 10px;
+    background-color: var(--GreyShades-900, #211d1d);
+    border: 1px solid var(--Black-20, #0009);
+    border-radius: 10px;
+    box-shadow: 3px 5px 5.4px 3px rgba(0, 0, 0, 0.25);
+    position: relative; 
+    overflow: hidden; 
+    transition: all 0.2s ease-in-out; 
+
+    h4 {
+    color: #fff;
+    font-size: 24px;
+    }
+
+    img {
+        width: 240px;
+        height: 240px;
+        object-fit: cover;
+    }
+}
+
+.movieCards:hover {
+    box-shadow: 0 0 15px rgba(255, 255, 0, 0.7); 
+    transition-delay: 1s;
+}
+
+/* Creating the span elements for the glowing borders */
+.movieCards span {
+    position: absolute;
+    display: block;
+}
+
+.movieCards span:nth-child(1) {
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, transparent, #ffff00);
+}
+
+.movieCards:hover span:nth-child(1) {
+    left: 100%;
+    transition: 1s;
+}
+
+.movieCards span:nth-child(3) {
+    bottom: 0;
+    right: -100%;
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(270deg, transparent, #ffff00);
+}
+
+.movieCards:hover span:nth-child(3) {
+    right: 100%;
+    transition: 1s;
+    transition-delay: 0.5s;
+}
+
+.movieCards span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #ffff00);
+}
+
+.movieCards:hover span:nth-child(2) {
+    top: 100%;
+    transition: 1s;
+    transition-delay: 0.25s;
+}
+
+.movieCards span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 4px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #ffff00);
+}
+
+.movieCards:hover span:nth-child(4) {
+    bottom: 100%;
+    transition: 1s;
+    transition-delay: 0.75s;
+}
+
+
+@media only screen and (min-width: 45rem) {
+    .output {
+        grid-template-columns: repeat(3, 1fr);
+    }
+
+    .neon-button {
+        font-size: 16px;
+    }   
+
+    .results-heading {
+        font-size: 36px;
+    }
+
+
+}
+
+@media only screen and (min-width: 65rem) {
+    .output {
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .neon-button {
+        font-size: 18px;
+    }
+}
+
+
+/* DETAILS PAGE */
+
+.details-html {
+    gap: 10px;
+    /* display: flex;
+    flex-direction: column;
+    align-items: center; */
+
+    /* header{
+        width: 100%;
+    } */
+}
+
+.details-main {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0 20px;
+    
+
+}
+
+
+.output-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    flex: 1 0 0;
+    align-self: stretch;
+    gap: 20px;
+}
+
+.output-details img{
+    width: 100%;
+    height: 580px;
+    flex: 1 0 0;
+    object-fit: contain;
+    background-position: top;
+}
+
+.details-card {
+display: flex;
+flex-direction: column;
+justify-content: space-between;
+align-items: flex-start;
+flex: 1 0 0;
+align-self: stretch;
+gap: 20px;
+
+h2 {
+    color: var(--Warning-200, #EFDD33);
+font-family: "Inria Serif";
+font-size: 40px;
+font-style: normal;
+font-weight: 400;
+line-height: normal;
+}
+}
+
+.details {
+    color: var(--Warning-200, #fff);
+
+/* Bold/Body Regular */
+font-family: "Inria Sans";
+font-size: 16px;
+font-style: normal;
+font-weight: 700;
+line-height: 16px; /* 100% */
+}
+
+.ratings {
+    background-color: red;
+    display: flex;
+    padding-left: 1px;
+    justify-content: center;
+    align-items: flex-start;
+    color: #fff;
+
+    /* background: var(--GreyShades-100, #E6E6E6); */
+}
+
+.neon-button {
+    width: fit-content;
+}
+
+@media only screen and (min-width: 45rem) {
+
+    .details-card h2 {
+        font-size: 48px;
+    } 
+}
+
+
+
 
