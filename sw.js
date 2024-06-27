@@ -3,24 +3,24 @@ const cacheName = `pwa-app-project-${version}`;
 const movieCacheName = `movie-pwa-project-${version}`;
 
 const preCacheResources = [
-    './',
-    './index.html',
-    './404.html',
-    './cache-results.html',
-    './details.html',
-    './favourite-screen.html',
-    './results.html',
-    './css/main.css',
-    './img/icons',
-    './js/main.js',
-    './manifest.json',
-    './img/icons/404.svg',
-    './img/icons/cross.svg',
-    './img/icons/heartbold.svg',
-    './img/icons/Icons.svg',
-    './img/icons/search.svg',
-    './img/icons/home.svg',
-    './img/images/movie.png'
+    '/',
+    '/index.html',
+    '/404.html',
+    '/cache-results.html',
+    '/details.html',
+    '/favourite-screen.html',
+    '/results.html',
+    '/css/main.css',
+    '/img/icons',
+    '/js/main.js',
+    '/manifest.json',
+    '/img/icons/404.svg',
+    '/img/icons/cross.svg',
+    '/img/icons/heartbold.svg',
+    '/img/icons/Icons.svg',
+    '/img/icons/search.svg',
+    '/img/icons/home.svg',
+    '/img/images/movie.png'
 ]
 
 
