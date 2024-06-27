@@ -1,7 +1,7 @@
 
 function registerSw(){
   if('serviceWorker' in navigator){
-      navigator.serviceWorker.register('./sw.js');
+      navigator.serviceWorker.register('../sw.js');
   }
 
   // navigator.serviceWorker.addEventListener("message", receiveMessage)
