@@ -13,7 +13,14 @@ const preCacheResources = [
     './css/main.css',
     './img/icons',
     './js/main.js',
-    './manifest.json'
+    './manifest.json',
+    './img/icons/404.svg',
+    './img/icons/cross.svg',
+    './img/icons/heartbold.svg',
+    './img/icons/Icons.svg',
+    './img/icons/search.svg',
+    './img/icons/home.svg',
+    './img/images/movie.png'
 ]
 
 
@@ -56,40 +63,48 @@ if(ev.data.type === "cardId"){
 self.addEventListener("fetch", (ev)=>{
 const isOnline = navigator.onLine;
 let url = ev.request.url;
-
 if(!isOnline && url.includes('results.html')){
   ev.respondWith ( 
      caches.match('/cache-results.html')
     )
 }
 
-if(ev.request.url.includes(".jpg")){
-ev.respondWith(
-    
-    caches.open(cacheName).then(async (cache)=>{
-        const response = await fetch(ev.request)
-        await cache.put(ev.request, response.clone())
-        return response
-    })
-)
-}
 
-else if(url.includes(movieCardId)&&url.includes('render')){
+if(url.includes(".jpg") || url.includes(".png")){
+ev.respondWith(
+    caches.open(cacheName).then(async (cache)=>{
+       return cache.match(ev.request).then(async(cacheRes)=>{
+            if(cacheRes){
+                return cacheRes
+            }
+            if(isOnline){
+                const response = await fetch(ev.request)
+                await cache.put(ev.request, response.clone())
+                return response
+            }
+        })
+    })
+)} else if(url.includes(movieCardId)&&url.includes('render')){
     ev.respondWith(
         caches.open(movieCacheName).then(async(cache)=>{
             if(isOnline){
                 let response = await fetch(ev.request);
                 await cache.put(ev.request, response.clone())
-                return response                
-            }
-             else {
-            return  caches.match(ev.request)
-            }
+                return response               
+            } 
+
+            return caches.match(ev.request);
+        })
+    )
+} else {
+    ev.respondWith(
+        caches.match(ev.request)
+        .then((cachedResponse) => {
+          return cachedResponse || fetch(ev.request);
         })
     )
 }
-}
-)
+})
 
 self.addEventListener('online', (ev)=>{
     console.log('Sw is online');

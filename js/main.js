@@ -7,29 +7,37 @@ function registerSw(){
   // navigator.serviceWorker.addEventListener("message", receiveMessage)
 }
 
+let dataArray = [];
+
 
 function checkPages(){
 if(document.body.classList.contains("index.html")){
   grabInputHome()
   console.log("index.html page")
+  
 
 } else if(document.body.classList.contains("results-html")){
   console.log("results.html page")
   fetchDataResults()
 
-}else if(document.body.classList.contains("results.html")){
-  console.log("results.html page")
+}else if(document.body.classList.contains("error-html")){
+  console.log("404 page")
+
 
 }else if(document.body.classList.contains("details-html")){
   console.log("details.html page")
   getOneId()
 
+
 }else if(document.body.classList.contains("cached.html")){
   console.log("cached.html page")
   retrieveFromCache()
-}else if(document.body.classList.contains("favourite.html")){
+
+
+}else if(document.body.classList.contains("favourite-html")){
   console.log("favourite.html page")
   retrieveFromFavourite()
+
 }
 }
 
@@ -76,7 +84,17 @@ fetch(BaseUrl).then((res)=>{
     throw new Error("Something is wrong")
   }
   return res.json();
-}).then(({data})=> appendData(data))
+}).then(({data})=> {
+  if (data.length === 0) {
+    console.log("data", data)
+    location.replace(location.origin+"/404.html")
+
+} else {
+    // Otherwise, proceed to append the data
+    appendData(data);
+    console.log("data", data)
+}
+})
 }
 
 
@@ -97,7 +115,7 @@ function appendData(data){
   
     let h4 = document.createElement("h4");
     h4.textContent = item.title
-
+     //Span elements to add the glowing hower on cards
     card.append(span1)
     card.append(span2)
     card.append(span3)
@@ -235,11 +253,11 @@ function appendMovieCards(cardData){
     img.width = 150
   
   
-    let h3 = document.createElement("h3");
-    h3.textContent = item.title
+    let h4 = document.createElement("h4");
+    h4.textContent = item.title
 
     card.append(img)
-    card.append(h3)
+    card.append(h4)
     df.append(card)
   });
 output.append(df)
@@ -260,7 +278,10 @@ async function retrieveFromCache(){
   appendMovieCards(cacheData)
 }
 
+
 document.addEventListener("DOMContentLoaded", init=>{
   checkPages();
   registerSw()
+
+  
   })

@@ -288,12 +288,13 @@ padding: 0 1.2rem;
     img {
         width: 240px;
         height: 240px;
-        object-fit: cover;
+        object-fit: contain;
+        background-color: #000;
     }
 }
 
 .movieCards:hover {
-    box-shadow: 0 0 15px rgba(255, 255, 0, 0.7); 
+    box-shadow: 0 0 15px #ffff00b3; 
     transition-delay: 1s;
 }
 
@@ -390,13 +391,6 @@ padding: 0 1.2rem;
 
 .details-html {
     gap: 10px;
-    /* display: flex;
-    flex-direction: column;
-    align-items: center; */
-
-    /* header{
-        width: 100%;
-    } */
 }
 
 .details-main {
@@ -404,8 +398,7 @@ padding: 0 1.2rem;
     flex-direction: column;
     gap: 20px;
     padding: 0 20px;
-    
-
+    max-width: max-content;
 }
 
 
@@ -420,17 +413,16 @@ padding: 0 1.2rem;
 }
 
 .output-details img{
-    width: 100%;
-    height: 580px;
+    max-width: 580px; 
+     height: 580px; 
     flex: 1 0 0;
-    object-fit: contain;
-    background-position: top;
+    object-fit: cover;
 }
 
 .details-card {
 display: flex;
 flex-direction: column;
-justify-content: space-between;
+/* justify-content: space-between; */
 align-items: flex-start;
 flex: 1 0 0;
 align-self: stretch;
@@ -477,7 +469,91 @@ line-height: 16px; /* 100% */
     .details-card h2 {
         font-size: 48px;
     } 
+
+    .output-details img {
+        object-fit: fill;
+        object-position: top;
+        width: 780px;
+        height: 680px;
+    }
+
+    .details {
+        width: min(45rem, 100%);
+    }
 }
+
+@media only screen and (min-width: 65rem) {
+    /* .output-details {
+        flex-direction: row;
+    } */
+
+    .output-details img {
+        width: 580px;
+        height: 580px;
+    }
+
+    .details {
+        width: min(65rem, 100%);
+    }
+
+    .details-card {
+        gap: 20px
+    }
+
+
+}
+
+/* FAVOURITE'S PAGE */
+
+
+.favourite-html {
+    display: flex;
+    gap: 10px;
+}   
+
+/* error page */
+
+.error-html{
+    gap: 10px;
+}
+
+.outererror{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 20px;
+    padding: 20px;
+
+    p{
+        color: #fff;
+        width: min(35rem, 100%);
+        text-align: center;
+    }
+}
+
+.text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+
+.back-button {
+    color: #febcb2;
+    text-decoration: none;
+    display: flex;
+    width: fit-content;
+padding: 8px;
+justify-content: center;
+gap: 8px;
+
+border-radius: 40px;
+border: 2px solid var(--Error-800, #FEBCB2);
+background: var(--Error-100, #FD1E00);
+}
+
 
 
 
