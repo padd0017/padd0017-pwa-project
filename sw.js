@@ -29,7 +29,9 @@ self.addEventListener('install', (ev)=>{
     console.log('Service Worker install event');
     ev.waitUntil(
         caches.open(cacheName).then((cache)=>{
-            return cache.addAll(preCacheResources)
+            preCacheResources.forEach(async(i)=>{
+               await cache.add(i)
+            })
         })
         .catch(console.error)
     )
@@ -106,12 +108,4 @@ ev.respondWith(
 }
 })
 
-self.addEventListener('online', (ev)=>{
-    console.log('Sw is online');
-    self.isOnline = true;
-})
-self.addEventListener('offline', (ev)=>{
-    console.log('Sw is offline');
-    self.isOnline = false;
-})
 

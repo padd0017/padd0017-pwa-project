@@ -87,7 +87,7 @@ fetch(BaseUrl).then((res)=>{
 }).then(({data})=> {
   if (data.length === 0) {
     console.log("data", data)
-    location.replace(location.origin+"./404.html")
+    location.replace(location.origin+"/404.html")
 
 } else {
     // Otherwise, proceed to append the data
