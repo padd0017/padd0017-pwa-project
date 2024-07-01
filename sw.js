@@ -29,9 +29,7 @@ self.addEventListener('install', (ev)=>{
     console.log('Service Worker install event');
     ev.waitUntil(
         caches.open(cacheName).then((cache)=>{
-            preCacheResources.forEach(async(i)=>{
-               await cache.add(i)
-            })
+            return cache.addAll(preCacheResources)
         })
         .catch(console.error)
     )
